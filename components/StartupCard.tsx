@@ -5,6 +5,7 @@ import Image from 'next/image'
 import { Button } from './ui/button'
 import React from 'react'
 import { Author, Startup } from '@/sanity/types'
+import { Skeleton } from './ui/skeleton'
 
 // type StartupCardType = {
 //   _id: string;
@@ -41,7 +42,7 @@ const StartupCard = ({post}:{post:StartupCardType}) => {
                 <Link href={`/user/${author?._id}`}>
                     <p className='text-16-medium line-clamp-1'>{author?.name}</p>
                 </Link>
-                <Link href={`startup/${_id}`}>
+                <Link href={`/startup/${_id}`}>
                 <h3 className='text-26-semibold line-clamp-1'>
                     {title}
                 </h3>
@@ -51,7 +52,7 @@ const StartupCard = ({post}:{post:StartupCardType}) => {
                 {author?.image && (
                     <Image 
                         src={author.image} 
-                        alt="profile image" 
+                        alt={author?.name || ''} 
                         width={550} 
                         height={500} 
                         className='rounded-full size-12'
@@ -59,7 +60,7 @@ const StartupCard = ({post}:{post:StartupCardType}) => {
                 )}
             </Link>  
         </div>
-        <Link href={`startup/${_id}`}>
+        <Link href={`/startup/${_id}`}>
             <p className='startup-card_desc'>
                 {description}
             </p>
@@ -79,6 +80,16 @@ const StartupCard = ({post}:{post:StartupCardType}) => {
         </div>
     </li>
   )
+
 }
+export const StartupCardSkeleton = ( )=>(
+  <>
+  {[0,1,2,3,4,5].map((index:number)=>(
+      <li key={`skeleton-${index}`}>
+        <Skeleton className='startup-card_skeleton'/>
+      </li>
+  ))}
+  </>
+)
 
 export default StartupCard
