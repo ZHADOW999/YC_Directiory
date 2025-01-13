@@ -46,6 +46,7 @@
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
+    "@sentry/cli": "^2.40.0",
     "@types/markdown-it": "^14.1.2",
     "@types/node": "^20",
     "@types/react": "^19",
